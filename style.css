@@ -1237,6 +1237,14 @@
           background-position: right 12px center;
           background-size: 9px;
         }
+        .cracolor .form-control{
+  
+
+    border-radius: 5px;
+    padding: 6px 5px 6px 15px;
+    font-size: 0.8rem;
+
+}
         .cardetail-box2 {
           padding: 30px;
           border-radius: 10px;
