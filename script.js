@@ -282,7 +282,7 @@
     .join(', ');
 console.log(form);
   let printHTML = `
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -290,116 +290,120 @@ console.log(form);
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: 'Arial', sans-serif;
       background-color: #f8f9fa;
-      padding: 40px;
+      font-family: 'Arial', sans-serif;
     }
-    .slip-container {
-      background: #fff;
-      padding: 30px;
+
+    .slip {
+      background-color: #fff;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 40px 30px;
       border-radius: 10px;
-      border: 1px solid #ccc;
-      max-width: 900px;
-      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
     }
-    .title {
-      font-weight: bold;
-      font-size: 22px;
-      letter-spacing: 1px;
-    }
-    .reg-no {
-      text-align: right;
-      font-weight: bold;
-    }
-    .label {
+
+    .reg-number {
+      text-align: end;
       font-weight: 600;
-      font-size: 12px;
-      color: #555;
-    }
-    .value {
       font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .reg-number span {
+      font-size: 25px;
       font-weight: bold;
-      color: #000;
     }
-    .footer-note {
+
+    .title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .title h6 {
+      letter-spacing: 1px;
+      font-size: 10px;
+      margin: 0;
+    }
+
+    .title h4 {
+       font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 20px;
+    }
+
+    .info-label {
       font-size: 12px;
-      color: #444;
-      line-height:1;
+      color: #666;
+      margin-bottom: 2px;
     }
+
+    .info-value {
+      font-weight: 600;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .pickup {
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
     .signature {
-      font-size: 12px;
-      text-align: right;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 40px;
     }
-    .qr-code {
-      height: 80px;
-      width: 80px;
-      object-fit: contain;
+
+    .signature img {
+      width: 60px;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
+  <div class="slip">
+    <div class="reg-number">Reg. No:<br><span>7829</span></div>
 
-<div class="slip-container shadow">
-    <div class="text-center">
-      <div class="text-uppercase text-muted small ">Acknowledgment Slip</div>
-      <div class="title">ORIGINAL COPY</div>
-    </div>
-    <div class="reg-no">
-      <div class="small">REG. NO:</div>
-      <div class="fs-4">7829</div>
+    <div class="title">
+      <h6>ACKNOWLEDGMENT SLIP</h6>
+      <h4>ORIGINAL COPY</h4>
     </div>
 
-  <div class="row mb-4">
-    <div class="col-md-6">
-      <div class="label">Customer Name</div>
-      <div class="value">${form.fullName.value}</div>
-    </div>
-    <div class="col-md-6">
-      <div class="label">Vehicle Name</div>
-      <div class="value"> ${form.Brand?.value || ""} ${form.Model?.value || ""} </div>
-    </div>
-  </div>
+    <div>
+      <div class="info-label">Customer Name</div>
+      <div class="info-value">${form.fullName.value}</div>
 
-  <div class="row mb-4">
-    <div class="col-md-6">
-      <div class="label">Service Type</div>
-      <div class="value">${selectedServices || ""}</div>
-    </div>
-    <div class="col-md-6">
-      <div class="label">Drop Location</div>
-      <div class="value">${form.Store?.value || ""}</div>
-    </div>
-  </div>
+      <div class="info-label">Make & Model</div>
+      <div class="info-value">${form.Brand?.value || ""} ${form.Model?.value || ""} </div>
 
-  <div class="row mb-4">
-    <div class="col-md-6">
-      <div class="label">Pickup Date & Time</div>
-      <div class="value">${form.dateInput?.value || ""} ,${form.timeInput?.value || ""}</div>
-    </div>
-    <div class="col-md-6">
-      <div class="label">Vehicle Number</div>
-      <div class="value">${form.Car_Number?.value || ""}</div>
-    </div>
-  </div>
+      <div class="info-label">Vehicle Number</div>
+      <div class="info-value">${form.Car_Number?.value || ""}</div>
 
-  <div class="row align-items-center mb-4">
-    <div class="col-md-6">
-      <p class="footer-note mt-2">
-        Thank you for choosing us! We appreciate your trust in us.<br>
-        Sit back and relax while we take care of everything your car needs.
-      </p>
-    </div>
-    <div class="col-md-3 text-end">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=HR92JF0033" alt="QR Code" class="qr-code">
-         <div class="signature">
-        SIGNATURE & ACKNOWLEDGEMENT<br>
-        <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Signature" style="width:10px; margin-top:5px;">
-      </div>
-    </div>
+      <div class="info-label">Service Type</div>
+      <div class="info-value">${selectedServices || ""}</div>
 
-  </div>
+      <div class="info-label">Drop Location</div>
+      <div class="info-value">${form.Store?.value || ""}</div>
+<div class="d-flex  justify-content-between">
+    <div>
+          <div class="info-label">Pickup Date & Time</div>
+      <div class="pickup">${form.dateInput?.value || ""} ,${form.timeInput?.value || ""}</div>
+    </div>
+      <div>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=HR92JF0033" alt="QR Code" class="qr-code" width="60px" height="60px">
+</div>
 </div>
 
+    </div>
+
+    <div class="signature">
+      Signature & Acknowledgement<br>
+      <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Signature_%28example%29.svg" alt="Signature"> -->
+    </div>
+  </div>
 </body>
 </html>
 
